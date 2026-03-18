@@ -289,3 +289,161 @@
     bottom: -20vw;
   }
 }
+
+/* ==========================================
+   Credibility Band
+   ========================================== */
+
+.credibilityBand {
+  position: relative;
+  padding: 80px 24px 96px;
+  background: #030303;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.credibilityBand.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.audienceLine {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  color: #a8a8a8;
+  margin-bottom: 48px;
+  max-width: 600px;
+}
+
+.proofChips {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  max-width: 900px;
+  width: 100%;
+}
+
+.proofChip {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 0 32px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.credibilityBand.visible .proofChip:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.credibilityBand.visible .proofChip:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.credibilityBand.visible .proofChip:nth-child(5) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.chipDivider {
+  width: 1px;
+  background: linear-gradient(180deg, transparent 0%, #333 30%, #333 70%, transparent 100%);
+  align-self: stretch;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  transition-delay: 0.15s;
+}
+
+.credibilityBand.visible .chipDivider {
+  opacity: 1;
+}
+
+.chipTitle {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #f0f0f0;
+  text-transform: uppercase;
+}
+
+.chipDesc {
+  font-family: var(--font-inter), Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b6b6b;
+  line-height: 1.4;
+}
+
+/* Credibility Band - Tablet */
+@media (max-width: 800px) {
+  .credibilityBand {
+    padding: 64px 24px 80px;
+  }
+
+  .audienceLine {
+    margin-bottom: 40px;
+  }
+
+  .proofChip {
+    padding: 0 20px;
+  }
+
+  .chipTitle {
+    font-size: 13px;
+  }
+
+  .chipDesc {
+    font-size: 13px;
+  }
+}
+
+/* Credibility Band - Mobile */
+@media (max-width: 620px) {
+  .credibilityBand {
+    padding: 56px 20px 72px;
+  }
+
+  .audienceLine {
+    font-size: 18px;
+    margin-bottom: 36px;
+  }
+
+  .proofChips {
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .chipDivider {
+    display: none;
+  }
+
+  .proofChip {
+    padding: 0;
+    gap: 6px;
+  }
+
+  .chipTitle {
+    font-size: 14px;
+  }
+
+  .chipDesc {
+    font-size: 13px;
+  }
+}

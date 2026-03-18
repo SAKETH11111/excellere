@@ -1,7 +1,30 @@
+"use client";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 import styles from "./page.module.css";
 
 export default function Home() {
+  const credibilityRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.visible);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (credibilityRef.current) {
+      observer.observe(credibilityRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
@@ -93,6 +116,34 @@ export default function Home() {
             className={styles.handsMobile}
             sizes="(max-width: 800px) 100vw, 0vw"
           />
+        </div>
+      </section>
+
+      {/* Credibility Band */}
+      <section ref={credibilityRef} className={styles.credibilityBand}>
+        <p className={styles.audienceLine}>
+          Built for startups, creators, and premium brands.
+        </p>
+        
+        <div className={styles.proofChips}>
+          <div className={styles.proofChip}>
+            <span className={styles.chipTitle}>Founder-led</span>
+            <span className={styles.chipDesc}>Personal oversight on every project</span>
+          </div>
+          
+          <div className={styles.chipDivider} aria-hidden="true" />
+          
+          <div className={styles.proofChip}>
+            <span className={styles.chipTitle}>End-to-end</span>
+            <span className={styles.chipDesc}>Strategy, design & development</span>
+          </div>
+          
+          <div className={styles.chipDivider} aria-hidden="true" />
+          
+          <div className={styles.proofChip}>
+            <span className={styles.chipTitle}>Fast launches</span>
+            <span className={styles.chipDesc}>Ship in weeks, not months</span>
+          </div>
         </div>
       </section>
     </div>
